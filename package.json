@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/kwhitejr/elemental-express/issues"
   },
-  "homepage": "https://github.com/kwhitejr/elemental-express#readme"
+  "homepage": "https://github.com/kwhitejr/elemental-express#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "jade": "^1.11.0"
+  }
 }
