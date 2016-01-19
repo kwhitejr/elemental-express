@@ -24,13 +24,28 @@ app.route('/elements')
 
 // use the request params to full the jade template
 app.get('/:elementName', function (req, res) {
-  console.log(req.params);
-  res.render('element', {
-    elementName: req.params.elementName,
-    elementSymbol: req.params.elementSymbol,
-    elementAtomicNumber: req.params.elementAtomicNumber,
-    elementDescription: req.params.elementDescription
-  });
+
+  var elementsData = JSON.parse(fs.readFileSync('./public/data.json', 'utf8'));
+  console.log(elementsData);
+
+  for (var i = 0; i < elementsData.length; i++) {
+    if (elementName === elementsData[i]) {
+      elementsData[i].elementName = res.local.elementName;
+      elementsData[i].elementSymbol = res.local.elementSymbol;
+      elementsData[i].elementAtomicNumber = res.local.elementAtomicNumber;
+      elementsData[i].elementDescription = res.local.elementDescription;
+    }
+  }
+  console.log(res.local);
+
+  res.render('element', res.locals);
+
+  // {
+  //   elementName: req.params.elementName,
+  //   elementSymbol: req.params.elementSymbol,
+  //   elementAtomicNumber: req.params.elementAtomicNumber,
+  //   elementDescription: req.params.elementDescription
+  // });
 });
 
 function validateElement(req, res, next) {

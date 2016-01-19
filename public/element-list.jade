@@ -1,0 +1,10 @@
+extends ./index
+
+mixin element(elementName)
+  li
+    a(href='/:elementName') #{elementName}
+
+block content
+  each element in elements
+    li
+      +element(elementName)
